@@ -1,6 +1,5 @@
 # FAQ
 
-
 ## Preconfigure Seafile Clients
 
 Normally, when the user installs a fresh seafile client, a login dialog would prompt him/her to fill the server address and user credentials. These behavior can be preconfigured by IT admins so that the users don't need to do it themselves.
@@ -94,6 +93,15 @@ To disable the "Do you want to remove the account information" dialog when unins
 - Key: PreconfigureKeepConfigWhenUninstall
 - Type: REG_SZ
 - Value: 0 (show the confirm dialog) or 1 (hide the confirm dialog wizard)
+
+```
+
+Since version 7.0.6, you may use the option below to control average block size for indexing files in Sync client. **Please note that, after setting this option in registry, you have to restart the sync client twice to let the option take effect.**
+
+```
+- Key: PreconfigureBlockSize
+- Type: REG_SZ
+- Value: a value larger than 1024. The unit is in bytes.
 
 ```
 
