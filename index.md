@@ -1,5 +1,3 @@
-
-
 * Managing Files and Folders
   * [Managing files with libraries](file_folder_managing/libraries_managing.md)
   * [Restoring deleted files](file_folder_managing/restoring_deleted_files.md)
@@ -31,6 +29,7 @@
   * [Seafile Client for a Cli server](syncing_client/linux-cli.md)
 * Drive Client
   * [Using Seafile Drive Client](drive_client/using_drive_client.md)
+  * [Using drive client 2.0 on Windows](drive_client/drive_client_2.0_for_windows_10.md)
   * [Drive Client for Linux](drive_client/drive_client_for_linux.md)
 * Security and Encryption
   * [How to use encrypted libraries](security_and_encryption/use_encrypted_libraries.md)
