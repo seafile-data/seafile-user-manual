@@ -1,40 +1,78 @@
 # Using Seafile Drive Client on Linux
 
-## Installing on Debian/Ubuntu
+You can find supported OS versions on <https://cloud.seatable.io/dtable/external-links/a85d4221e41344c19566/?tid=YzYy&vid=pO5i>
 
-Debian/Ubuntu users can install SeaDrive from our Debian repository.
+## Installing on Debian/Ubuntu
 
 To install the client, first add the signing key:
 
 ```
-sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 8756C4F765C9AC3CB6B85D62379CE192D401AB61
-```
-
-Then add the repo to your apt source list, here we use Debian 8 (jessie) as an example. Change it to "stretch" for Debian 9. Change it to "xenial" for Ubuntu 16.04.
+wget -O - http://linux-clients.seafile.com/seafile.key | sudo apt-key add -
 
 ```
-echo deb http://deb.seadrive.org jessie main | sudo tee /etc/apt/sources.list.d/seafile.list
-sudo apt-get update
+
+Then add the repo to your apt source list, using the line corresponding to your Debian/Ubuntu version :
+
+```
+For Debian 9
+sudo echo "deb http://linux-clients.seafile.com/seadrive-deb/stretch/ stable main" > /etc/apt/sources.list.d/seadrive.list
+
+```
+
+```
+For Debian 10
+sudo echo "deb http://linux-clients.seafile.com/seadrive-deb/buster/ stable main" > /etc/apt/sources.list.d/seadrive.list
+
+```
+
+```
+For Ubuntu 18.04
+sudo echo "deb http://linux-clients.seafile.com/seadrive-deb/bionic/ stable main" > /etc/apt/sources.list.d/seadrive.list
+
+```
+
+```
+For Ubuntu 20.04
+sudo echo "deb http://linux-clients.seafile.com/seadrive-deb/focal/ stable main" > /etc/apt/sources.list.d/seadrive.list
+
+```
+
+Update your local apt cache :
+
+```
+sudo apt update
+
 ```
 
 To install SeaDrive with GUI:
 
 ```
 sudo apt-get install seadrive-gui
+
 ```
 
 To install SeaDrive without GUI:
 
 ```
 sudo apt-get install seadrive-daemon
-```
-
-## Installing on CentOS 7
-
-Add the repo
 
 ```
-wget -O- https://git.io/seadrive-centos7-repo | sudo tee /etc/yum.repos.d/seadrive.repo
+
+## Centos 7
+
+Since 7.0.3 version, we provide official repo for CentOS or RHEL. Currently only CentOS/RHEL 7 is supported.
+
+Add the repo (The same repo is used for seadrive.)
+
+```
+sudo cat > /etc/yum.repos.d/seadrive.repo <<EOF
+[seadrive]
+name=seadrive
+baseurl=http://linux-clients.seafile.com/seadrive-rpm
+gpgcheck=0
+enabled=1
+EOF
+
 ```
 
 Install SeaDrive Client
@@ -42,20 +80,7 @@ Install SeaDrive Client
 ```
 sudo yum install -y epel-release
 sudo yum install -y seadrive --enablerepo=cr
-```
 
-## Installing on Fedora
-
-Add the repo
-
-```
-wget -O- https://git.io/seadrive-fedora-repo | sudo tee /etc/yum.repos.d/seadrive.repo
-```
-
-Install SeaDrive Client
-
-```
-sudo yum install -y seadrive
 ```
 
 ## Running SeaDrive with GUI
@@ -70,6 +95,7 @@ First, you have to obtain an access token from your server.
 
 ```
 curl -d "username=username@example.com" -d "password=123456" https://seafile.example.com/api2/auth-token/
+
 ```
 
 Then you have to prepare a config file for SeaDrive. Let's assume that you save the config file as `~/seadrive.conf.`
@@ -87,6 +113,7 @@ client_name = johns-ubuntu
 [cache]
 size_limit = 10GB
 clean_cache_interval = 10
+
 ```
 
 You can only specify one account in the config file. If you need to switch accounts, you'll have to stop SeaDrive, change config file and restart. Meaning of config options are as following:
@@ -101,6 +128,7 @@ Then you can start seadrive:
 
 ```
 seadrive -c ~/seadrive.conf -f -d data-directory [-l logfile] virtual-drive-dir
+
 ```
 
 Note that you must give `-f` option in the command line, to make sure seadrive runs in foregound, instead of forking as a daemon. By default, the data directory used by the SeaDrive GUI client will be `~/.seadrive/data`. It's recommended to use this path for data directory to be consistent with the GUI client. The log file path is `~/.seadrive/logs/seadrive.log`.
@@ -109,6 +137,7 @@ Sometimes you'll see the following error:
 
 ```
 fuse: bad mount point `/home/user/SeaDrive': Transport endpoint is not connected
+
 ```
 
 You can run `fusermount -u /home/user/SeaDrive` to fix the problem.

@@ -1,13 +1,53 @@
 # Install Seafile Client on Linux
 
-## Ubuntu
+You can find supported OS versions on <https://cloud.seatable.io/dtable/external-links/a85d4221e41344c19566/?tid=YzYy&vid=pO5i>
 
-Ubuntu users can install Seafile client from the [Official PPA](https://code.launchpad.net/~seafile/+archive/ubuntu/seafile-client):
+## Debian/Ubuntu
 
-```sh
-sudo add-apt-repository ppa:seafile/seafile-client
-sudo apt-get update
-sudo apt-get install seafile-gui
+To install the client, first add the signing key:
+
+```
+wget -O - http://linux-clients.seafile.com/seafile.key | sudo apt-key add -
+
+```
+
+Then add the repo to your apt source list, using the line corresponding to your Debian/Ubuntu version :
+
+```
+For Debian 9
+sudo echo "deb http://linux-clients.seafile.com/seafile-deb/stretch/ stable main" > /etc/apt/sources.list.d/seafile.list
+
+```
+
+```
+For Debian 10
+sudo echo "deb http://linux-clients.seafile.com/seafile-deb/buster/ stable main" > /etc/apt/sources.list.d/seafile.list
+
+```
+
+```
+For Ubuntu 18.04
+sudo echo "deb http://linux-clients.seafile.com/seafile-deb/bionic/ stable main" > /etc/apt/sources.list.d/seafile.list
+
+```
+
+```
+For Ubuntu 20.04
+sudo echo "deb http://linux-clients.seafile.com/seafile-deb/focal/ stable main" > /etc/apt/sources.list.d/seafile.list
+
+```
+
+Update your local apt cache :
+
+```
+sudo apt update
+
+```
+
+Now install the client:
+
+```
+sudo apt install -y seafile-gui
 
 ```
 
@@ -20,57 +60,22 @@ sudo apt-get install libsearpc-dbg ccnet-dbg libccnet-dbg seafile-daemon-dbg lib
 
 ```
 
-Now you can start seafile client from Unity's dash.
+**note:** from seafile version 7.0.8, seaf-cli only support python3.5 or above on Debian/Ubuntu.
 
-## Debian
-
-Debian users can install Seafile client from our debian repo:
-
-To install the client, first add the signing key:
-
-```sh
-sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 8756C4F765C9AC3CB6B85D62379CE192D401AB61
-
-```
-
-Then add the repo to your apt source list, using the line corresponding to your debian version :
-
-```
-# For Debian 7
-echo deb http://deb.seadrive.org wheezy main | sudo tee /etc/apt/sources.list.d/seafile.list
-
-# For Debian 8
-echo deb http://deb.seadrive.org jessie main | sudo tee /etc/apt/sources.list.d/seafile.list
-
-# For Debian 9
-echo deb http://deb.seadrive.org stretch main | sudo tee /etc/apt/sources.list.d/seafile.list
-
-```
-
-Update your local apt cache :
-
-```
-sudo apt-get update
-
-```
-
-Now install the client:
-
-```sh
-sudo apt-get install seafile-gui
-
-```
-
-If you only want to install the command-line client, run `sudo apt-get install seafile-cli` instead.
-
-## CentOS/RHEL
+## Centos 7
 
 Since 7.0.3 version, we provide official repo for CentOS or RHEL. Currently only CentOS/RHEL 7 is supported.
 
 Add the repo (The same repo is used for seadrive.)
 
 ```
-wget -O- https://git.io/seadrive-centos7-repo | sudo tee /etc/yum.repos.d/seadrive.repo
+sudo cat > /etc/yum.repos.d/seafile.repo <<EOF
+[seafile]
+name=seafile
+baseurl=http://linux-clients.seafile.com/seafile-rpm
+gpgcheck=0
+enabled=1
+EOF
 
 ```
 
@@ -78,9 +83,12 @@ Install Seafile Client
 
 ```
 sudo yum install -y epel-release
+
 sudo yum install -y seafile --enablerepo=cr
 
 ```
+
+**note: **from seafile version 7.0.8, seaf-cli only support python3.6 on Centos 7 . 
 
 ## Fedora (Community Maintained)
 
