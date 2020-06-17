@@ -15,25 +15,25 @@ Then add the repo to your apt source list, using the line corresponding to your 
 
 ```
 For Debian 9
-sudo echo "deb http://linux-clients.seafile.com/seadrive-deb/stretch/ stable main" > /etc/apt/sources.list.d/seadrive.list
+sudo bash -c "echo 'deb http://linux-clients.seafile.com/seadrive-deb/stretch/ stable main' > /etc/apt/sources.list.d/seadrive.list"
 
 ```
 
 ```
 For Debian 10
-sudo echo "deb http://linux-clients.seafile.com/seadrive-deb/buster/ stable main" > /etc/apt/sources.list.d/seadrive.list
+sudo bash -c "echo 'deb http://linux-clients.seafile.com/seadrive-deb/buster/ stable main' > /etc/apt/sources.list.d/seadrive.list"
 
 ```
 
 ```
 For Ubuntu 18.04
-sudo echo "deb http://linux-clients.seafile.com/seadrive-deb/bionic/ stable main" > /etc/apt/sources.list.d/seadrive.list
+sudo bash -c "echo 'deb http://linux-clients.seafile.com/seadrive-deb/bionic/ stable main' > /etc/apt/sources.list.d/seadrive.list"
 
 ```
 
 ```
 For Ubuntu 20.04
-sudo echo "deb http://linux-clients.seafile.com/seadrive-deb/focal/ stable main" > /etc/apt/sources.list.d/seadrive.list
+sudo bash -c "echo 'deb http://linux-clients.seafile.com/seadrive-deb/focal/ stable main' > /etc/apt/sources.list.d/seadrive.list"
 
 ```
 
