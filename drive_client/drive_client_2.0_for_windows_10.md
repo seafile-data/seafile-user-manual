@@ -59,3 +59,11 @@ SeaDrive 2.0 will use any existing accounts and their metadata (stored under C:\
 ### How do I clean the cache?
 
 You can manually choose which folders or files to be cached locally. If you find a folder consumes too much space, just choose to "Free up space" on that folder and all cached files in that folder will be cleaned. There is no need to set cache cleaning time and cache size limit as in SeaDrive 1.0. Because placeholders are just normal files created on your local disk, your cache size is only limited by the available disk space on your computer.
+
+### How to remove left-over SeaDrive shortcuts in Windows Explorer?
+
+The "SeaDrive" shortcut in Windows Explorer won't disappear after you exit SeaDrive progrme or switch Seafile accounts in SeaDrive. This is an intended behavior. You don't need to remove them if you still need to access the account later.
+
+In some corner cases, the "SeaDrvie" shortcut will be left-over in Windows Explorer and you want to remove it. For example, you changed your cache folder location. The shortcut to the old cache folder will be left over.
+
+If you're sure you no longer need to files under the old cache folder, you can remove it directly. And you can remove the SeaDrive shortcut in Windows Explorer by editing the registry. Open the path "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Desktop\\NameSpace\\" in registry editor. Remove the sub-keys correspond to the shortcut you want to remove.
