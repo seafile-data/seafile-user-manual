@@ -64,6 +64,8 @@ You can manually choose which folders or files to be cached locally. If you find
 
 The "SeaDrive" shortcut in Windows Explorer won't disappear after you exit SeaDrive progrme or switch Seafile accounts in SeaDrive. This is an intended behavior. You don't need to remove them if you still need to access the account later.
 
-In some corner cases, the "SeaDrvie" shortcut will be left-over in Windows Explorer and you want to remove it. For example, you changed your cache folder location. The shortcut to the old cache folder will be left over.
+In some corner cases, the "SeaDrvie" shortcut will be left-over in Windows Explorer and you want to remove it.
 
-If you're sure you no longer need to files under the old cache folder, you can remove it directly. And you can remove the SeaDrive shortcut in Windows Explorer by editing the registry. Open the path "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Desktop\\NameSpace\\" in registry editor. Remove the sub-keys correspond to the shortcut you want to remove.
+You can usually remove those shortcuts by uninstalling SeaDrive program.
+
+If uninstallation doesn't remove the shortcuts successfully, you can remove the SeaDrive shortcut in Windows Explorer by editing the registry. Open the path "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Desktop\\NameSpace\\" in registry editor. Remove the sub-keys correspond to the shortcut you want to remove.
