@@ -66,13 +66,13 @@ sudo apt-get install libsearpc-dbg ccnet-dbg libccnet-dbg seafile-daemon-dbg lib
 
 Since 7.0.3 version, we provide official repo for CentOS or RHEL. Currently only CentOS/RHEL 7 is supported.
 
-Add the repo (The same repo is used for seadrive.)
+Add the repo
 
 ```
 sudo cat > /etc/yum.repos.d/seafile.repo <<EOF
 [seafile]
 name=seafile
-baseurl=http://linux-clients.seafile.com/seafile-rpm
+baseurl=http://linux-clients.seafile.com/seafile-rpm/centos7
 gpgcheck=0
 enabled=1
 EOF
@@ -87,12 +87,32 @@ sudo yum install -y epel-release
 sudo yum install -y seafile --enablerepo=cr
 
 ```
+ 
 
-**note: **from seafile version 7.0.8, seaf-cli only support python3.6 on Centos 7 . 
+## Fedora
 
-## Fedora (Community Maintained)
+Since 7.0.9 version, we provide official repo for Fedora. Currently Fedora 31 and Fedora 32 is supported.
 
-There is a _community maintained_ Seafile Client RPM package in Fedora's [official repository](https://src.fedoraproject.org/rpms/seafile).
+Add the repo
+
+```
+sudo cat > /etc/yum.repos.d/seafile.repo <<EOF
+[seafile]
+name=seafile
+baseurl=http://linux-clients.seafile.com/seafile-rpm/fedora32
+gpgcheck=0
+enabled=1
+EOF
+
+```
+For fedora 31, The `baseurl` above should be replaced with `http://linux-clients.seafile.com/seafile-rpm/fedora31`
+
+Install Seafile Client
+
+```
+sudo yum install -y seafile
+```
+
 
 ## Arch Linux (Community Maintained)
 
