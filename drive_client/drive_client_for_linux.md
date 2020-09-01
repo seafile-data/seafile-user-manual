@@ -82,6 +82,29 @@ sudo yum install -y epel-release
 sudo yum install -y seadrive --enablerepo=cr
 
 ```
+## Fedora
+
+Since 7.0.9 version, we provide official repo for Fedora. Currently Fedora 31 and Fedora 32 is supported.
+
+Add the repo
+
+```
+sudo cat > /etc/yum.repos.d/seadrive.repo <<EOF
+[seadrive]
+name=seadrive
+baseurl=http://linux-clients.seafile.com/seadrive-rpm/fedora32
+gpgcheck=0
+enabled=1
+EOF
+
+```
+For fedora 31, The `baseurl` above should be replaced with `http://linux-clients.seafile.com/seadrive-rpm/fedora31`
+
+Install Seadrive Client
+
+```
+sudo yum install -y seadrive
+```
 
 ## Running SeaDrive with GUI
 
