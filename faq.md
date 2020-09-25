@@ -9,7 +9,9 @@ There are two ways to preconfigure seafile client:
 * On windows, the admin can store the details it in the windows registry.
 * On all desktop platforms (win/linux/mac), the admin can also store the details in a file `seafile.ini` in the HOME folder of the user.
 
-### Using Windows Registry
+### Preconfigure options for sync clients
+
+#### Using Windows Registry
 
 The preconfigure information can be stored in one of the following two places:
 
@@ -22,7 +24,7 @@ If the information is found in both places, the one under `HKEY_CURRENT_USER` wo
 
 > If you are using 64-bit windows and using HKLM instead of HKCU to deploy your seafile program. please note you need to correct the PrimaryKey to `HKEY_LOCAL_MACHINE\\SOFTWARE\\Wow6432Node\\Seafile` instead of `HKEY_LOCAL_MACHINE\\SOFTWARE\\Seafile`. This is because seafile client is compiled as a 32-bit application on windows.
 
-#### List of Available Preconfigure Options
+List of Available Preconfigure Options.
 
 To preset the default server address:
 
@@ -96,6 +98,19 @@ To disable the "Do you want to remove the account information" dialog when unins
 
 ```
 
+When the user installs seafile client on windows, the seafile client program would be started immediately after the installation is finished.
+
+While this is the expected action for most users, it may be necessary to disable it sometimes. For example, when the seafile client is installed with Windows Group Policy Object (GPO), the program would be launched with the ADMIN user (instead of the current login user), which would make the program work incorrectly. In such cases, it's desirable to disable the launch of seafile client after installation.
+
+To disable this behavior:
+
+```
+- Key: PreconfigureSuppressLaunchAfterInstall
+- Type: REG_SZ
+- Value: 1
+
+```
+
 Since version 7.0.6, you may use the option below to control average block size for indexing files in Sync client. **Please note that, after setting this option in registry, you have to restart the sync client twice to let the option take effect.**
 
 ```
@@ -120,7 +135,29 @@ PreconfigureServerAddr = https://cloud.seafile.de
 
 ```
 
-### How to use run Seafile client as a service on Windows
+### Preconfigure options for SeaDrive
+
+#### Using Windows Registry
+
+From SeaDrive 2.0.6 on, some preconfigure registry keys are supported.
+
+The preconfigure information can be stored in one of the following two places:
+
+* `HKEY_CURRENT_USER\\SOFTWARE\\SeaDrive`
+* or `HKEY_LOCAL_MACHINE\\SOFTWARE\\SeaDrive`
+
+If the information is found in both places, the one under `HKEY_CURRENT_USER` would take precedence.
+
+Below options are provided. You can refer to sync client's documentation about the meaning of each option.
+
+* PreconfigureServerAddr
+* PreconfigureServerAddrOnly
+* PreconfigureShibbolethLoginUrl
+* HideConfigurationWizard
+* PreconfigureKeepConfigWhenUninstall
+* PreconfigureSuppressLaunchAfterInstall
+
+## How to use run Seafile client as a service on Windows
 
 Seafile client can be configured to run as a daemon using tools like Firedaemon. First configure Seafile as the user it should run - in this example "Administator"：
 
@@ -134,22 +171,7 @@ Replace `S:` with the partition you actually use to store `seafile-data` and `Se
 
 You call also use tools like NSSM (the Non-Sucking Service Manager). For more information, please check <https://valdasv.blogspot.jp/2016/06/seafile-client-service.html>
 
-### How to suppress the launch of Seafile client after install on Windows
-
-When the user installs seafile client on windows, the seafile client program would be started immediately after the installation is finished.
-
-While this is the expected action for most users, it may be necessary to disable it sometimes. For example, when the seafile client is installed with Windows Group Policy Object (GPO), the program would be launched with the ADMIN user (instead of the current login user), which would make the program work incorrectly. In such cases, it's desirable to disable the launch of seafile client after installtion.
-
-To disable this behavior:
-
-```
-- Key: PreconfigureSuppressLaunchAfterInstall
-- Type: REG_SZ
-- Value: 1
-
-```
-
-### How to solve the shell icon overlay not shown problem
+## How to solve the shell icon overlay not shown problem
 
 Windows uses only the first 15 of the entries in the registry 
 (HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\ShellIconOverlayIdentifiers). If there are other programs, like Dropbox and OneDrive, use up the overlay icons, Seafile shell icon overlay will not shown. To solve the problem, just delete the registration entries of other programs.
