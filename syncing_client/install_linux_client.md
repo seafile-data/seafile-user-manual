@@ -7,7 +7,7 @@ You can find supported OS versions on <https://cloud.seatable.io/dtable/external
 To install the client, first add the signing key:
 
 ```
-wget -O - http://linux-clients.seafile.com/seafile.key | sudo apt-key add -
+sudo wget https://linux-clients.seafile.com/seafile.asc -O /usr/share/keyrings/seafile-keyring.asc
 
 ```
 
@@ -15,25 +15,25 @@ Then add the repo to your apt source list, using the line corresponding to your 
 
 ```
 For Debian 9
-sudo bash -c "echo 'deb [arch=amd64] http://linux-clients.seafile.com/seafile-deb/stretch/ stable main' > /etc/apt/sources.list.d/seafile.list"
+sudo bash -c "echo 'deb [arch=amd64 signed-by=/usr/share/keyrings/seafile-keyring.asc] https://linux-clients.seafile.com/seafile-deb/stretch/ stable main' > /etc/apt/sources.list.d/seafile.list"
 
 ```
 
 ```
 For Debian 10
-sudo bash -c "echo 'deb [arch=amd64] http://linux-clients.seafile.com/seafile-deb/buster/ stable main' > /etc/apt/sources.list.d/seafile.list"
+sudo bash -c "echo 'deb [arch=amd64 signed-by=/usr/share/keyrings/seafile-keyring.asc] https://linux-clients.seafile.com/seafile-deb/buster/ stable main' > /etc/apt/sources.list.d/seafile.list"
 
 ```
 
 ```
 For Ubuntu 18.04
-sudo bash -c "echo 'deb [arch=amd64] http://linux-clients.seafile.com/seafile-deb/bionic/ stable main' > /etc/apt/sources.list.d/seafile.list"
+sudo bash -c "echo 'deb [arch=amd64 signed-by=/usr/share/keyrings/seafile-keyring.asc] https://linux-clients.seafile.com/seafile-deb/bionic/ stable main' > /etc/apt/sources.list.d/seafile.list"
 
 ```
 
 ```
 For Ubuntu 20.04
-sudo bash -c "echo 'deb [arch=amd64] http://linux-clients.seafile.com/seafile-deb/focal/ stable main' > /etc/apt/sources.list.d/seafile.list"
+sudo bash -c "echo 'deb [arch=amd64 signed-by=/usr/share/keyrings/seafile-keyring.asc] https://linux-clients.seafile.com/seafile-deb/focal/ stable main' > /etc/apt/sources.list.d/seafile.list"
 
 ```
 
@@ -72,7 +72,7 @@ Add the repo
 sudo cat > /etc/yum.repos.d/seafile.repo <<EOF
 [seafile]
 name=seafile
-baseurl=http://linux-clients.seafile.com/seafile-rpm/centos7
+baseurl=https://linux-clients.seafile.com/seafile-rpm/centos7
 gpgcheck=0
 enabled=1
 EOF
@@ -87,7 +87,6 @@ sudo yum install -y epel-release
 sudo yum install -y seafile --enablerepo=cr
 
 ```
- 
 
 ## Fedora
 
@@ -99,20 +98,21 @@ Add the repo
 sudo cat > /etc/yum.repos.d/seafile.repo <<EOF
 [seafile]
 name=seafile
-baseurl=http://linux-clients.seafile.com/seafile-rpm/fedora32
+baseurl=https://linux-clients.seafile.com/seafile-rpm/fedora32
 gpgcheck=0
 enabled=1
 EOF
 
 ```
-For fedora 31, The `baseurl` above should be replaced with `http://linux-clients.seafile.com/seafile-rpm/fedora31`
+
+For fedora 31, The `baseurl` above should be replaced with `https://linux-clients.seafile.com/seafile-rpm/fedora31`
 
 Install Seafile Client
 
 ```
 sudo yum install -y seafile
-```
 
+```
 
 ## Arch Linux (Community Maintained)
 

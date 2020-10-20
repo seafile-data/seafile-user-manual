@@ -7,7 +7,7 @@ You can find supported OS versions on <https://cloud.seatable.io/dtable/external
 To install the client, first add the signing key:
 
 ```
-wget -O - http://linux-clients.seafile.com/seafile.key | sudo apt-key add -
+sudo wget https://linux-clients.seafile.com/seafile.asc -O /usr/share/keyrings/seafile-keyring.asc
 
 ```
 
@@ -15,25 +15,25 @@ Then add the repo to your apt source list, using the line corresponding to your 
 
 ```
 For Debian 9
-sudo bash -c "echo 'deb [arch=amd64] http://linux-clients.seafile.com/seadrive-deb/stretch/ stable main' > /etc/apt/sources.list.d/seadrive.list"
+sudo bash -c "echo 'deb [arch=amd64 signed-by=/usr/share/keyrings/seafile-keyring.asc] https://linux-clients.seafile.com/seadrive-deb/stretch/ stable main' > /etc/apt/sources.list.d/seadrive.list"
 
 ```
 
 ```
 For Debian 10
-sudo bash -c "echo 'deb [arch=amd64] http://linux-clients.seafile.com/seadrive-deb/buster/ stable main' > /etc/apt/sources.list.d/seadrive.list"
+sudo bash -c "echo 'deb [arch=amd64 signed-by=/usr/share/keyrings/seafile-keyring.asc] https://linux-clients.seafile.com/seadrive-deb/buster/ stable main' > /etc/apt/sources.list.d/seadrive.list"
 
 ```
 
 ```
 For Ubuntu 18.04
-sudo bash -c "echo 'deb [arch=amd64] http://linux-clients.seafile.com/seadrive-deb/bionic/ stable main' > /etc/apt/sources.list.d/seadrive.list"
+sudo bash -c "echo 'deb [arch=amd64 signed-by=/usr/share/keyrings/seafile-keyring.asc] https://linux-clients.seafile.com/seadrive-deb/bionic/ stable main' > /etc/apt/sources.list.d/seadrive.list"
 
 ```
 
 ```
 For Ubuntu 20.04
-sudo bash -c "echo 'deb [arch=amd64] http://linux-clients.seafile.com/seadrive-deb/focal/ stable main' > /etc/apt/sources.list.d/seadrive.list"
+sudo bash -c "echo 'deb [arch=amd64 signed-by=/usr/share/keyrings/seafile-keyring.asc] https://linux-clients.seafile.com/seadrive-deb/focal/ stable main' > /etc/apt/sources.list.d/seadrive.list"
 
 ```
 
@@ -68,7 +68,7 @@ Add the repo (The same repo is used for seadrive.)
 sudo cat > /etc/yum.repos.d/seadrive.repo <<EOF
 [seadrive]
 name=seadrive
-baseurl=http://linux-clients.seafile.com/seadrive-rpm
+baseurl=https://linux-clients.seafile.com/seadrive-rpm
 gpgcheck=0
 enabled=1
 EOF
@@ -82,6 +82,7 @@ sudo yum install -y epel-release
 sudo yum install -y seadrive --enablerepo=cr
 
 ```
+
 ## Fedora
 
 Since 7.0.9 version, we provide official repo for Fedora. Currently Fedora 31 and Fedora 32 is supported.
@@ -92,18 +93,20 @@ Add the repo
 sudo cat > /etc/yum.repos.d/seadrive.repo <<EOF
 [seadrive]
 name=seadrive
-baseurl=http://linux-clients.seafile.com/seadrive-rpm/fedora32
+baseurl=https://linux-clients.seafile.com/seadrive-rpm/fedora32
 gpgcheck=0
 enabled=1
 EOF
 
 ```
-For fedora 31, The `baseurl` above should be replaced with `http://linux-clients.seafile.com/seadrive-rpm/fedora31`
+
+For fedora 31, The `baseurl` above should be replaced with `https://linux-clients.seafile.com/seadrive-rpm/fedora31`
 
 Install Seadrive Client
 
 ```
 sudo yum install -y seadrive
+
 ```
 
 ## Running SeaDrive with GUI
